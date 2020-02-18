@@ -1,0 +1,121 @@
+{
+  "name": "v4-backend",
+  "version": "1.0.0",
+  "description": "Backend of RSV4",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "rebuild": "rm -rf dist && tsc",
+    "clean": "rm -rf dist *.xml coverage .nyc_output",
+    "debug": "export DEBUG = 1 && node -r ts-node/register -r tsconfig-paths src/index.ts",
+    "test": "mocha --reporter mocha-junit-reporter --opts unit-tests/mocha.opts ./unit-tests/**/*-test.ts",
+    "test-only": "mocha --opts unit-tests/mocha.opts ./unit-tests/**/*-test.ts",
+    "test-one": "mocha --opts unit-tests/mocha.opts",
+    "coverage": "nyc mocha --reporter mocha-junit-reporter --opts unit-tests/mocha.opts ./unit-tests/**/*-test.ts",
+    "coverage-one": "nyc --reporter text mocha --opts unit-tests/mocha.opts",
+    "ts-node": "ts-node",
+    "start": "node dist/index.js",
+    "watch": "nodemon --watch dist --watch config -e 'js, json, .env' dist/index.js",
+    "watch-ts": "tsc -w & nodemon --watch dist --watch config -e 'js, json, .env' dist/index.js",
+    "migrations": "node migrate.js",
+    "m": "node migrate.js",
+    "mc": "node migrate.js create",
+    "mr": "node migrate.js rollback",
+    "mi": "node migrate.js init",
+    "lint": "eslint 'src/**/*.ts' --fix || true",
+    "lint-report": "eslint -f checkstyle 'src/**/*.ts' -o lint-result.xml",
+    "dboff": "killall mongod",
+    "dbon": "mkdir -p ./db && mongod --dbpath ./db"
+  },
+  "nyc": {
+    "reporter": "clover",
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "node_modules/**",
+      "**/bind*.ts",
+      "**/types.ts",
+      "**/inversify.config.ts",
+      "**/framework/ddd/**",
+      "**/framework/interfaces/**",
+      "**/mocks/**"
+    ]
+  },
+  "_moduleAliases": {
+    "@framework": "./dist/framework",
+    "@domain-objects": "./dist/domain-objects",
+    "@api": "./dist/api-controllers",
+    "@middleware": "./dist/middleware",
+    "@domain-services": "./dist/domain-services",
+    "@application-services": "./dist/application-services",
+    "@config": "./config",
+    "@events": "./dist/events",
+    "@event-handlers": "./dist/event-handlers",
+    "@interfaces": "./dist/interfaces",
+    "@mocks": "./dist/mocks"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratt-spar-i-uppsala-ab/v4-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ratt-spar-i-uppsala-ab/v4-backend/issues"
+  },
+  "homepage": "https://github.com/ratt-spar-i-uppsala-ab/v4-backend#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "elasticsearch": "^16.4.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "inversify": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.3",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.3.1",
+    "reflect-metadata": "^0.1.13",
+    "saslprep": "^1.0.3",
+    "uuid-mongodb": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/chai": "^4.2.4",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/elasticsearch": "^5.0.35",
+    "@types/express": "^4.17.1",
+    "@types/faker": "^4.1.6",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/mocha": "^5.2.7",
+    "@types/mongodb": "^3.3.6",
+    "@types/mysql": "^2.15.7",
+    "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "chai": "*",
+    "cors": "^2.8.5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.1",
+    "mocha-junit-reporter": "^1.23.1",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1",
+    "source-map-support": "^0.5.13",
+    "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.6.4"
+  }
+}

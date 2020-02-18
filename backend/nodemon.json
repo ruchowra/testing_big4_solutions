@@ -1,0 +1,4 @@
+{
+  "watch": ["dist", "config"],
+  "ext": "js, json, .env"
+}

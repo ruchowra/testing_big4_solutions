@@ -1,0 +1,68 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-base", 
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@framework", "./src/framework"],
+          ["@domain-objecs", "./src/domain-objects"],
+          ["@api", "./src/api-controllers"],
+          ["@middleware", "./src/middleware"],
+          ["@domain-services", "./src/domain-services"],
+          ["@config", "./config"]
+        ],
+        "extensions": [".ts", ".js", ".jsx"]
+      }
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error", {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "^_" 
+      }
+    ],
+    "import/no-unresolved": "off",
+    "indent": "off",
+    "brace-style": [2, "1tbs"],
+    "@typescript-eslint/indent": ["error", 2],
+    "max-len": [2, {
+      "code": 120,
+      "tabWidth": 2,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true
+    }],
+    "no-undef": "off",
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "no-plusplus": "off",
+    "arrow-body-style": "off",
+    "no-underscore-dangle": "off"
+  }
+}
