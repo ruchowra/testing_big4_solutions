@@ -72,7 +72,7 @@
   },
   "homepage": "https://github.com/ratt-spar-i-uppsala-ab/v4-backend#readme",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "elasticsearch": "^16.4.0",
